@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { ChakraProvider } from '@chakra-ui/react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useTodo } from './hooks/useTodo';
@@ -6,10 +7,15 @@ import Home from './components/Home';
 import SobreNosotros from './components/SobreNosotros';
 import { TodoAdd } from './components/TodoAdd';
 import { TodoList } from './components/TodoList';
+import './App.css';
+import { FaMoon } from 'react-icons/fa';
 
-import './App.css'; // Importa los estilos de App.css
+
+
 
 function App() {
+    const [modoNoche, setModoNoche] = useState(false);
+
     const {
         todos,
         todosCount,
@@ -20,11 +26,23 @@ function App() {
         handleUpdateTodo,
     } = useTodo();
 
+    const toggleModoNoche = () => {
+        setModoNoche(!modoNoche);
+    };
+
     return (
         <ChakraProvider>
-            <Router>
-                <div className='card-to-do'>
-                    <Header />
+        <Router>
+            <div className={`card-to-do ${modoNoche ? 'modo-noche' : ''}`}>
+                <Header modoNoche={modoNoche} />
+                <div className="content-container">
+            
+                <div className="top-left-buttons">
+                            <button onClick={toggleModoNoche}>
+                                <FaMoon /> {/* Ícono de luna */}
+                            </button>
+                        </div>
+                    
                     <Routes>
                         <Route path="/" element={<Home />} />
 
@@ -58,6 +76,7 @@ function App() {
                         />
                         <Route path="/sobre-nosotros" element={<SobreNosotros />} />
                     </Routes>
+                    </div>
                 </div>
             </Router>
         </ChakraProvider>

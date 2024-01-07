@@ -10,6 +10,10 @@
     --azul-hover: #48cae4;
     --rojo-hover: #e5383b;
     --verde: #09a129;
+    --fondo-dia: #ffffff;
+    --texto-dia: #000000;
+    --fondo-noche: #121212;
+    --texto-noche: #ffffff;
 }
 
 body {
@@ -20,12 +24,73 @@ body {
     justify-content: center;
 }
 
+
+
 .card-to-do {
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
-    padding: 25px;
     border-radius: 20px;
-    width: 700px;
+    background-color: var(--fondo-dia);
+    color: var(--texto-dia);
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Alinea el contenido al centro */
+    padding: 20px;
+    width: 100%; /* Utiliza el 100% del ancho disponible */
+    max-width: 800px; /* Ajusta según sea necesario para limitar el ancho máximo */
+    margin: 40px auto; /* Centra el bloque en la página */
 }
+
+.card-to-do input,
+.card-to-do textarea,
+.card-to-do select {
+  background-color: var(--fondo-dia); /* Color de fondo en modo día */
+  color: var(--texto-dia); /* Color de texto en modo día */
+}
+
+.card-to-do.modo-noche input,
+.card-to-do.modo-noche textarea,
+.card-to-do.modo-noche select {
+  background-color: #202028; /* Color de fondo en modo noche */
+  color: var(--texto-noche); /* Color de texto en modo noche */
+}
+
+.content-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra horizontalmente el contenido */
+    justify-content: center; /* Centra verticalmente el contenido */
+}
+
+.top-left-buttons {
+    margin-bottom: 20px;
+    align-self: flex-start;
+}
+
+.top-left-buttons button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    color: var(--texto-dia);
+}
+
+.card-to-do.modo-noche .top-left-buttons button {
+    color: var(--texto-noche);
+}
+
+
+.card-to-do.modo-noche {
+    background-color: var(--fondo-noche);
+    color: var(--texto-noche);
+}
+
+.card-to-do.modo-noche button {
+    /* Estilos específicos para el botón en modo noche */
+    background-color: #2d2d2d;
+    color: #ffffff;
+}
+
 
 h1 {
     text-align: center;
@@ -190,6 +255,11 @@ form {
     font-size: 17px;
     color: #555;
 }
+
+.input-add[name='description'] {
+    /* Estilos específicos para la caja de texto de descripción */
+    line-height: 2.5; /* Ajusta este valor según sea necesario para centrar verticalmente el texto */
+    }
 
 .btn-add {
     border: none;

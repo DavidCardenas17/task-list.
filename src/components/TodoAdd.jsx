@@ -35,7 +35,7 @@ export const TodoAdd = ({ handleNewTodo, editingTodo }) => {
                 placeholder='Nombre de la tarea'
             />
 
-            <textarea
+            <input
                 className='input-add'
                 name='description'
                 value={description}
